@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
 
 import App from "./App";
