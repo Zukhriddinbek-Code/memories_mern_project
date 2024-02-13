@@ -1,4 +1,4 @@
-import React, { useStateß } from "react";
+import React, { useState } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase64 from "react-file-base64";
 
@@ -17,13 +17,16 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+  const clear = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <Paper className={classes.paper}>
       <form
         autoComplete="off"
         noValidate
-        className={classes.form}
+        className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">Creating a Memeory</Typography>
@@ -73,6 +76,25 @@ const Form = () => {
             }
           />
         </div>
+        <Button
+          className={classes.buttonSubmit}
+          variant="contained"
+          color="primary"
+          size="large"
+          type="submit"
+          fullWidth
+        >
+          Submit
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          onClick={clear}
+          fullWidth
+        >
+          Clear
+        </Button>
       </form>
     </Paper>
   );
