@@ -31,16 +31,16 @@ const Form = ({ currentId, setCurrentId }) => {
 
     if (currentId) {
       dispatch(updatePost(currentId, postData));
+      clear();
     } else {
       dispatch(createPost(postData));
+      clear();
     }
 
     console.log(postData);
   };
 
-  const clear = (e) => {
-    e.preventDefault();
-
+  const clear = () => {
     setCurrentId(null);
 
     setPostData({
