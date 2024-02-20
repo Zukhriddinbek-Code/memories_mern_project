@@ -40,6 +40,16 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const clear = (e) => {
     e.preventDefault();
+
+    setCurrentId(null);
+
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
   };
 
   return (
@@ -50,7 +60,9 @@ const Form = ({ currentId, setCurrentId }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating a Memeory</Typography>
+        <Typography variant="h6">
+          {currentId ? "Editing" : "Creating"} a Memeory
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"
