@@ -68,7 +68,7 @@ export const likePost = async (req, res) => {
     return res.status(404).send("No post with this ID found!!!");
   }
 
-  const post = PostMessage.findById(id);
+  const post = await PostMessage.findById(id);
   const updatedPost = await PostMessage.findByIdAndUpdate(
     id,
     {
