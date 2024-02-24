@@ -5,6 +5,7 @@ import { Grow, Container, Grid } from "@material-ui/core";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import { getPosts } from "../../actions/posts";
+import useStyles from "./styles";
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(null);
