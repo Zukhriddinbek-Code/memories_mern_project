@@ -16,8 +16,10 @@ import Input from "./Input";
 
 const Auth = () => {
   const classes = useStyles();
-  const isSignup = false;
+  const isSignup = true;
   const [showPassword, setShowPassword] = useState(false);
+
+  const switchMode = () => {};
 
   const handleShowPassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -75,7 +77,7 @@ const Auth = () => {
             {isSignup && (
               <Input
                 name="confirmPassword"
-                label="Repeat Password"
+                label="Confirm Password"
                 handleChange={handleChange}
                 type="password"
               />
@@ -91,6 +93,16 @@ const Auth = () => {
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
+
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Button onClick={switchMode}>
+                {isSignup
+                  ? "Already have an account? Sign In"
+                  : "Not a member yet? Sign Up"}
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </Paper>
     </Container>
