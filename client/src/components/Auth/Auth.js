@@ -7,10 +7,11 @@ import {
   Grid,
   Typography,
   Container,
-  TextField,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { GoogleLogin } from "react-google-login";
 
+import Icon from "./icon";
 import useStyles from "./styles";
 import Input from "./Input";
 
@@ -33,6 +34,9 @@ const Auth = () => {
   };
 
   const handleChange = () => {};
+
+  const googleSuccess = () => {};
+  const googleFailure = () => {};
 
   return (
     <Container component="main" maxWidth="xs">
@@ -86,6 +90,26 @@ const Auth = () => {
               />
             )}
           </Grid>
+
+          <GoogleLogin
+            clientId="Google Id"
+            render={(renderProps) => (
+              <Button
+                className={classes.googleButton}
+                color="primary"
+                fullWidth
+                onClick={renderProps.onClick}
+                disable={renderProps.disabled}
+                startIcon={<Icon />}
+                variant="contained"
+              >
+                Google Sign In
+              </Button>
+            )}
+            onSuccess={googleSuccess}
+            onFailure={googleFailure}
+            cookiePolicy="single_host_origin"
+          />
 
           <Button
             type="submit"
