@@ -16,13 +16,16 @@ import Input from "./Input";
 
 const Auth = () => {
   const classes = useStyles();
-  const isSignup = true;
   const [showPassword, setShowPassword] = useState(false);
-
-  const switchMode = () => {};
+  const [isSignup, setIsSignup] = useState(false);
 
   const handleShowPassword = () => {
     setShowPassword((prevState) => !prevState);
+  };
+
+  const switchMode = () => {
+    setIsSignup((prevState) => !prevState);
+    handleShowPassword(false);
   };
 
   const handleSubmit = (e) => {
