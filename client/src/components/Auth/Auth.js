@@ -35,8 +35,13 @@ const Auth = () => {
 
   const handleChange = () => {};
 
-  const googleSuccess = () => {};
-  const googleFailure = () => {};
+  const googleSuccess = (res) => {
+    console.log(res);
+  };
+
+  const googleFailure = () => {
+    console.log("Google Sign in cannot proceed! Try again later");
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -92,7 +97,7 @@ const Auth = () => {
           </Grid>
 
           <GoogleLogin
-            clientId="Google Id"
+            clientId="300549585207-i67nlm3v7jplnvm8godurktoionamlhq.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
