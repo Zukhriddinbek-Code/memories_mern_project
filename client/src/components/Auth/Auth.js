@@ -22,10 +22,10 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
 
-  // const login = useGoogleLogin({
-  //   onSuccess: (tokenResponse) => console.log(tokenResponse),
-  //   onError: (error) => console.log(error),
-  // });
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => console.log(tokenResponse),
+    onError: (error) => console.log(error),
+  });
 
   const handleShowPassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -134,15 +134,15 @@ const Auth = () => {
             onFailure={googleFailure}
             cookiePolicy="single_host_origin"
           /> */}
-          <GoogleLogin
+          {/* <GoogleLogin
             onSuccess={googleSuccess}
             onError={googleFailure}
             text="continue_with"
             logo_alignment="center"
             size="large"
             width={"365"}
-          />
-          {/* <Button
+          /> */}
+          <Button
             className={classes.googleButton}
             color="primary"
             fullWidth
@@ -152,7 +152,7 @@ const Auth = () => {
             variant="contained"
           >
             Google Sign In
-          </Button> */}
+          </Button>
 
           <Grid container justifyContent="flex-end">
             <Grid item>
