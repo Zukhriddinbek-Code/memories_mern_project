@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import App from "./App";
 import "./index.css";
@@ -15,7 +17,10 @@ const store = configureStore({
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <GoogleOAuthProvider clientId="300549585207-6hmb0epksgmfr7l2qe1g8mq40bi8vsmh.apps.googleusercontent.com">
+      <App />
+    </GoogleOAuthProvider>
+    ;
   </Provider>,
   document.getElementById("root")
 );
