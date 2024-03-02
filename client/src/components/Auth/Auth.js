@@ -35,13 +35,17 @@ const Auth = () => {
 
   const handleChange = () => {};
 
-  const googleSuccess = (res) => {
+  const googleSuccess = async (res) => {
     console.log(res);
   };
 
-  const googleFailure = () => {
+  const googleFailure = (err) => {
+    console.log(err);
     console.log("Google Sign in cannot proceed! Try again later");
   };
+  // "You have created a new client application that uses libraries for user authentication or authorization that are deprecated.
+  // New clients must use the new libraries instead.
+  // See the [Migration Guide](https://developers.google.com/identity/gsi/web/guides/gis-migration) for more information."
 
   return (
     <Container component="main" maxWidth="xs">
@@ -96,6 +100,16 @@ const Auth = () => {
             )}
           </Grid>
 
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            {isSignup ? "Sign Up" : "Sign In"}
+          </Button>
+
           <GoogleLogin
             clientId="300549585207-i67nlm3v7jplnvm8godurktoionamlhq.apps.googleusercontent.com"
             render={(renderProps) => (
@@ -104,7 +118,7 @@ const Auth = () => {
                 color="primary"
                 fullWidth
                 onClick={renderProps.onClick}
-                disable={renderProps.disabled}
+                disabled={renderProps.disabled}
                 startIcon={<Icon />}
                 variant="contained"
               >
@@ -115,16 +129,6 @@ const Auth = () => {
             onFailure={googleFailure}
             cookiePolicy="single_host_origin"
           />
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            {isSignup ? "Sign Up" : "Sign In"}
-          </Button>
 
           <Grid container justifyContent="flex-end">
             <Grid item>
