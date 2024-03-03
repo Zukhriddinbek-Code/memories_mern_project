@@ -16,6 +16,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import Icon from "./icon";
 import useStyles from "./styles";
 import Input from "./Input";
+import axios from "axios";
 
 const Auth = () => {
   const classes = useStyles();
@@ -23,7 +24,21 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
 
   const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => console.log(tokenResponse),
+    onSuccess: async (response) => {
+      try {
+        const res = await axios.get(
+          "https://www.googleapis.com/oauth2/v3/userinfo",
+          {
+            headers: {
+              Authorization: `Bearer ${response.access_token}`,
+            },
+          }
+        );
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+    },
     onError: (error) => console.log(error),
   });
 
