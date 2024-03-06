@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 // import { GoogleLogin } from "react-google-login";
 import { GoogleLogin } from "@react-oauth/google";
 import { useGoogleLogin } from "@react-oauth/google";
+import { useDispatch } from "react-redux";
 
 import Icon from "./icon";
 import useStyles from "./styles";
@@ -22,22 +23,23 @@ const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const dispatch = useDispatch();
 
   const login = useGoogleLogin({
     onSuccess: async (response) => {
+      let res;
       try {
-        const res = await axios.get(
-          "https://www.googleapis.com/oauth2/v3/userinfo",
-          {
-            headers: {
-              Authorization: `Bearer ${response.access_token}`,
-            },
-          }
-        );
-        console.log(res);
+        res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+          headers: {
+            Authorization: `Bearer ${response?.access_token}`,
+          },
+        });
+        dispatch({ type: "AUTH", data: { res } });
       } catch (error) {
         console.log(error);
       }
+      const profObj = res;
+      console.log(profObj);
     },
     onError: (error) => console.log(error),
   });
@@ -57,14 +59,14 @@ const Auth = () => {
 
   const handleChange = () => {};
 
-  const googleSuccess = async (res) => {
-    console.log(res);
-  };
+  // const googleSuccess = async (res) => {
+  //   console.log(res);
+  // };
 
-  const googleFailure = (err) => {
-    console.log(err);
-    console.log("Google Sign in cannot proceed! Try again later");
-  };
+  // const googleFailure = (err) => {
+  //   console.log(err);
+  //   console.log("Google Sign in cannot proceed! Try again later");
+  // };
   // "You have created a new client application that uses libraries for user authentication or authorization that are deprecated.
   // New clients must use the new libraries instead.
   // See the [Migration Guide](https://developers.google.com/identity/gsi/web/guides/gis-migration) for more information."
