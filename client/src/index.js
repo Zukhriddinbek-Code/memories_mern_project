@@ -8,11 +8,12 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import App from "./App";
 import "./index.css";
 import postsReducer from "./reducers/postsReducer";
+import authReducer from "./reducers/postsReducer";
 
 // Automatically adds the thunk middleware and the Redux DevTools extension
 const store = configureStore({
   // Automatically calls `combineReducers`
-  reducer: { posts: postsReducer },
+  reducer: { posts: postsReducer, auth: authReducer },
 });
 
 ReactDOM.render(
