@@ -27,19 +27,24 @@ const Auth = () => {
 
   const login = useGoogleLogin({
     onSuccess: async (response) => {
-      let res;
+      // let res;
       try {
-        res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
-          headers: {
-            Authorization: `Bearer ${response?.access_token}`,
-          },
-        });
-        dispatch({ type: "AUTH", data: { res } });
+        const res = await axios.get(
+          "https://www.googleapis.com/oauth2/v3/userinfo",
+          {
+            headers: {
+              Authorization: `Bearer ${response?.access_token}`,
+            },
+          }
+        );
+        const profObj = res.data;
+        // console.log(profObj);
+        dispatch({ type: "AUTH", data: { profObj } });
       } catch (error) {
         console.log(error);
       }
-      const profObj = res;
-      console.log(profObj);
+      // const profObj = res.data;
+      // console.log(profObj);
     },
     onError: (error) => console.log(error),
   });
